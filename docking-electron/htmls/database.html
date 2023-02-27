@@ -1,0 +1,247 @@
+<html lang="">
+  <head>
+    <link rel="stylesheet" type="text/css" href="../css/elementUiIndex.css" />
+    <link rel="stylesheet" type="text/css" href="../css/global.css" />
+    <link rel="stylesheet" type="text/css" href="../css/elementDesign.css" />
+    <link rel="stylesheet" type="text/css" href="../css/database.css" />
+    <title>视塔ERP</title>
+    <script src="../js/message.js"></script>
+    <script src="../js/modal.js"></script>
+    <script src="../js/axios.js"></script>
+    <script src="../js/http.js"></script>
+  </head>
+
+  <body>
+    <div class="database-container">
+      <div class="form-container">
+        <div class="form-info">
+          <div class="label">数据库类型</div>
+          <div class="info" style="position: relative;">
+            <div class="el-select" onclick="showSelectList()">
+              <div class="select-trigger">
+                <div class="el-input el-input--suffix">
+                  <input
+                    class="el-input__inner"
+                    type="text"
+                    readonly=""
+                    autocomplete="off"
+                    name="serverType"
+                    placeholder=" "
+                  />
+                  <span class="el-input__suffix"
+                    ><span class="el-input__suffix-inner"
+                      ><i
+                        class="el-select__caret el-input__icon el-icon-arrow-up"
+                      ></i>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="el-select__popper el-popper is-light is-pure"
+              role="tooltip"
+              data-popper-placement="bottom-start"
+            >
+              <div class="el-select-dropdown" style="min-width: 424px">
+                <div class="el-scrollbar">
+                  <div
+                    class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"
+                  >
+                    <ul class="el-scrollbar__view el-select-dropdown__list">
+                      <li
+                        class="el-select-dropdown__item"
+                        onclick="setServerType('SQL Server')"
+                      >
+                        <span>SQL Server</span>
+                      </li>
+                      <li
+                        class="el-select-dropdown__item"
+                        onclick="setServerType('MySQL')"
+                      >
+                        <span>MySQL</span>
+                      </li>
+                      <li
+                        class="el-select-dropdown__item"
+                        onclick="setServerType('Oracle')"
+                      >
+                        <span>Oracle</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="el-popper__arrow"
+                data-popper-arrow=""
+                style="position: absolute; left: 206px"
+              ></div>
+            </div>
+          </div>
+          <div class="label">服务器</div>
+          <div class="info">
+            <div class="el-input">
+              <input
+                class="el-input__inner"
+                type="text"
+                autocomplete="off"
+                name="server"
+              />
+            </div>
+          </div>
+          <p class="windows">
+            <label class="el-checkbox">
+              <input
+                type="checkbox"
+                name="windowVerify"
+                value="Windows身份验证"
+              />
+              <span class="el-checkbox__label"> Windows身份验证 </span>
+            </label>
+          </p>
+          <div class="label">用户名</div>
+          <div class="info">
+            <div class="el-input">
+              <input
+                class="el-input__inner"
+                type="text"
+                autocomplete="off"
+                name="username"
+              />
+            </div>
+          </div>
+          <div class="label">登录密码</div>
+          <div class="info">
+            <div class="el-input">
+              <input
+                class="el-input__inner"
+                type="text"
+                autocomplete="off"
+                name="password"
+              />
+            </div>
+          </div>
+          <div class="label">接口</div>
+          <div class="info">
+            <div class="el-input">
+              <input
+                class="el-input__inner"
+                type="text"
+                autocomplete="off"
+                name="interface"
+              />
+            </div>
+          </div>
+          <div class="label">数据库名</div>
+          <div class="info">
+            <div class="el-input">
+              <input
+                class="el-input__inner"
+                type="text"
+                autocomplete="off"
+                name="serverName"
+              />
+            </div>
+          </div>
+          <div class="btn-container">
+            <button
+              class="el-button el-button--default el-button--mini"
+              type="button"
+              onclick="testConnect()"
+            >
+              <span>连接测试</span>
+            </button>
+            <button
+              class="el-button el-button--primary el-button--mini"
+              type="button"
+              onclick="save()"
+            >
+              <span>保存</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let showSelect = false;
+    let modal = null;
+    // 下拉框显隐
+    function showSelectList() {
+      document.getElementsByClassName("el-select__popper")[0].style = showSelect
+        ? "display:none"
+        : "display:block;";
+      showSelect = !showSelect;
+    }
+    // 选中下拉框选项
+    function setServerType(serverType) {
+      document.getElementsByName("serverType")[0].value = serverType;
+      showSelectList();
+    }
+    // 测试连接
+    function testConnect() {
+      let params = {
+        serverType: document.getElementsByName("serverType")[0].value,
+        server: document.getElementsByName("server")[0].value,
+        windowVerify: document.getElementsByName("windowVerify")[0].checked,
+        username: document.getElementsByName("username")[0].value,
+        password: document.getElementsByName("password")[0].value,
+        interface: document.getElementsByName("interface")[0].value,
+        serverName: document.getElementsByName("serverName")[0].value,
+      };
+      formatHttp(axios, {
+        method: "post",
+        url: "PLAT_Dict.getPl1atDict",
+        data: params,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((e) => {
+          messageTip(e.msg);
+          modal = new Modal({
+            title: "数据库连接失败",
+            showClose: true,
+            content:
+              "<p style='font-size: 14px;color: rgba(0,0,0,0.6);line-height: 22px;'>已成功与服务器建立连接，但是在登录过程中发生错误。orovider:共享内存提供程序,error:管道的兑—端上无在向进程。)Microsoft sQL server·错误:233)</p>",
+            showCancel: true,
+            showConfirm: true,
+            cancelText: "取消",
+            confirmText: "退出",
+            width: "480px",
+            onConfirm: () => {
+              exit();
+            },
+          });
+          modal.init();
+        });
+    }
+    function exit() {
+      modal.closeModal();
+      modal = null;
+    }
+    // 保存
+    function save() {
+      let params = {
+        serverType: document.getElementsByName("serverType")[0].value,
+        server: document.getElementsByName("server")[0].value,
+        windowVerify: document.getElementsByName("windowVerify")[0].checked,
+        username: document.getElementsByName("username")[0].value,
+        password: document.getElementsByName("password")[0].value,
+        interface: document.getElementsByName("interface")[0].value,
+        serverName: document.getElementsByName("serverName")[0].value,
+      };
+      formatHttp(axios, {
+        method: "post",
+        url: "",
+        data: params,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((e) => {
+          messageTip(e.msg);
+        });
+    }
+  </script>
+</html>

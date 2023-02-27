@@ -1,0 +1,61 @@
+.database-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.database-container .form-container {
+  width: 732px;
+  height: 594px;
+  background: #ffffff;
+  box-shadow: 0px 2px 6px 0px rgba(186, 186, 186, 0.2);
+  border-radius: 0px 0px 2px 2px;
+}
+
+.database-container .form-info {
+  padding: 24px 154px;
+}
+
+.database-container .form-info .label {
+  font-size: 12px;
+  color: #142231;
+  font-weight: bold;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.database-container .form-info .info {
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.database-container .form-info .info .el-input__inner {
+  background: #f4f6f8;
+  border: none;
+}
+
+.database-container .form-info .windows {
+  margin-top: -10px;
+  margin-bottom: 16px;
+  line-height: 20px;
+}
+
+.database-container .form-info .btn-container {
+  margin-top: 48px;
+  text-align: right;
+}
+
+.database-container .form-info .btn-container .el-button {
+  width: 92px;
+}
+.database-container .el-select__popper {
+  z-index: 2010;
+  position: absolute;
+  left: 0;
+  top: 40px;
+  margin: 0px;
+  display: none;
+}
