@@ -1,4 +1,4 @@
-let baseUrl = "https://api-erp-dev.yaofangwang.com/";
+let baseUrl = "";
 // 统一配置
 let ST_REQUEST = null;
 function formatHttp(axios, requestObj) {

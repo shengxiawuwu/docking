@@ -1,0 +1,607 @@
+<html lang="">
+  <head>
+    <link rel="stylesheet" type="text/css" href="../css/elementUiIndex.css" />
+    <link rel="stylesheet" type="text/css" href="../css/global.css" />
+    <link rel="stylesheet" type="text/css" href="../css/elementDesign.css" />
+    <link rel="stylesheet" type="text/css" href="../css/twoTable.css" />
+    <script src="../js/request.js"></script>
+    <script src="../js/message.js"></script>
+    <script src="../js/page.js"></script>
+  </head>
+
+  <body>
+    <div class="commoditycode-container">
+      <div class="top-part commoditycode-container-top">
+        <div class="commoditycode-title">表一</div>
+        <div class="commoditycode-search-part">
+          <div class="left-part">
+            <div class="el-input">
+              <input
+                class="el-input__inner"
+                type="text"
+                autocomplete="off"
+                placeholder="姓名或学号"
+              />
+            </div>
+            <button
+              class="el-button el-button--primary el-button--mini is-plain"
+              type="button"
+              onclick="searchTableOne()"
+            >
+              <span>查询</span>
+            </button>
+          </div>
+          <div class="right-part">
+            <button
+              class="el-button el-button--default el-button--mini"
+              type="button"
+              onclick="refresh()"
+            >
+              <span>刷新</span>
+            </button>
+          </div>
+        </div>
+        <div class="commoditycode-search-result">
+          <div class="table-content-fixed">
+            <table cellspacing="0">
+              <thead>
+                <tr>
+                  <th width="125px">ID</th>
+                  <th width="125px">学号</th>
+                  <th width="125px">姓名</th>
+                  <th width="125px">班级</th>
+                  <th width="125px">年龄</th>
+                  <th width="125px">类型</th>
+                  <th width="125px">籍贯</th>
+                  <th width="125px">读书证号</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+
+          <div class="table-content-scroll">
+            <table cellspacing="0">
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div
+          role="pagination"
+          aria-label="pagination"
+          class="el-pagination pagination hort-box"
+          data-v-b770da44=""
+        >
+          <span class="el-pagination__total"></span>
+          <button
+            type="button"
+            class="btn-prev"
+            onclick="handlePageChange('prev','commoditycode-container-top')"
+          >
+            <i class="el-icon el-icon-arrow-left"></i>
+          </button>
+          <ul class="el-pager"></ul>
+          <button
+            type="button"
+            class="btn-next"
+            onclick="handlePageChange('next','commoditycode-container-top')"
+          >
+            <i class="el-icon el-icon-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="footer-part commoditycode-container-footer">
+        <div class="commoditycode-title">表二</div>
+        <div class="commoditycode-search-part">
+          <div class="left-part">
+            <div class="el-input">
+              <input
+                class="el-input__inner"
+                type="text"
+                autocomplete="off"
+                placeholder="姓名或学号"
+              />
+            </div>
+            <button
+              class="el-button el-button--primary el-button--mini is-plain"
+              type="button"
+              onclick="searchBase()"
+            >
+              <span>查询</span>
+            </button>
+          </div>
+        </div>
+        <div class="commoditycode-search-result">
+          <div class="table-content-fixed">
+            <table cellspacing="0">
+              <thead>
+                <tr>
+                  <th width="125px">ID</th>
+                  <th width="125px">学号</th>
+                  <th width="125px">姓名</th>
+                  <th width="125px">班级</th>
+                  <th width="125px">年龄</th>
+                  <th width="125px">类型</th>
+                  <th width="125px">籍贯</th>
+                  <th width="125px">读书证号</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+
+          <div class="table-content-scroll">
+            <table cellspacing="0">
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          role="pagination"
+          aria-label="pagination"
+          class="el-pagination pagination hort-box"
+          data-v-b770da44=""
+        >
+          <span class="el-pagination__total"></span>
+          <button
+            type="button"
+            class="btn-prev"
+            onclick="handlePageChange('prev','commoditycode-container-footer')"
+          >
+            <i class="el-icon el-icon-arrow-left"></i>
+          </button>
+          <ul class="el-pager"></ul>
+          <button
+            type="button"
+            class="btn-next"
+            onclick="handlePageChange('next','commoditycode-container-footer')"
+          >
+            <i class="el-icon el-icon-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let currentPage = 1;
+    let pageCount = 8;
+    let rowCount = 78;
+    let currentPageBase = 1;
+    let pageCountBase = 8;
+    let rowCountBase = 78;
+    function searchTableOne() {
+      document.getElementsByClassName("table-content-fixed")[0].style = "";
+      let erpDataList = [
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+      ];
+      if (erpDataList.length > 6) {
+        document.getElementsByClassName("table-content-fixed")[0].style =
+          "width:calc(100% - 8px)";
+      }
+      let tbody = document.getElementsByTagName("tbody")[0];
+      tbody.innerHTML = "";
+      erpDataList.forEach((item, index) => {
+        let tr = document.createElement("tr");
+        for (let key in item) {
+          let td = document.createElement("td");
+          td.width = "125px";
+          td.innerHTML = item[key];
+          tr.appendChild(td);
+        }
+        tbody.append(tr);
+      });
+    }
+    // 查询数据
+    function searchBase() {
+      document.getElementsByClassName("table-content-fixed")[1].style = "";
+      let erpDataList = [
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+        {
+          id: 3701917,
+          no: 1,
+          name: "张三",
+          grade: "一年级",
+          age: "22",
+          type: "学生",
+          address: "江苏南京",
+          cardNo: "221546018",
+        },
+      ];
+      if (erpDataList.length > 5) {
+        document.getElementsByClassName("table-content-fixed")[1].style =
+          "width:calc(100% - 8px)";
+      }
+      let tbody = document.getElementsByTagName("tbody")[1];
+      tbody.innerHTML = "";
+      erpDataList.forEach((item, index) => {
+        let tr = document.createElement("tr");
+        for (let key in item) {
+          let td = document.createElement("td");
+          td.width = "125px";
+          td.innerHTML = item[key];
+          tr.appendChild(td);
+        }
+        tbody.append(tr);
+      });
+    }
+    // 刷新
+    function refresh() {
+      searchTableOne();
+    }
+    // 选中表格当前行的效果
+    function resetTableStatus(obj, trs) {
+      for (let i = 0; i < trs.length; i++) {
+        trs[i].className = "";
+      }
+      obj.className = "is-selected";
+    }
+    // -------------------------初始化ERP页码---------------------------------
+    // 初始化页码
+    function initPage() {
+      setPage(
+        pageCount,
+        rowCount,
+        "commoditycode-container-top",
+        function (newPageObj) {
+          receivePageCallBack(newPageObj, "commoditycode-container-top");
+        }
+      );
+      setPage(
+        pageCountBase,
+        rowCountBase,
+        "commoditycode-container-footer",
+        function (newPageObj) {
+          receivePageCallBack(newPageObj, "commoditycode-container-footer");
+        }
+      );
+    }
+    // 页码器跳转
+    function handlePageChange(val, parentName) {
+      let docModule = document.getElementsByClassName(parentName)[0];
+      let numberDomLists = docModule.getElementsByClassName("number");
+      if (val === "prev") {
+        if (parentName === "commoditycode-container-top") {
+          currentPage--;
+          if (currentPage > 1) {
+            if (numberDomLists[1].innerText > currentPage) {
+              linkPrevPage(
+                docModule.getElementsByClassName("btn-quickprev")[0],
+                numberDomLists,
+                pageCount,
+                docModule,
+                function (newPageObj) {
+                  receivePageCallBack(newPageObj, parentName);
+                }
+              );
+            }
+          }
+        } else {
+          currentPageBase--;
+          if (currentPageBase > 1) {
+            if (numberDomLists[1].innerText > currentPageBase) {
+              linkPrevPage(
+                docModule.getElementsByClassName("btn-quickprev")[0],
+                numberDomLists,
+                pageCountBase,
+                docModule,
+                function (newPageObj) {
+                  receivePageCallBack(newPageObj, parentName);
+                }
+              );
+            }
+          }
+        }
+      } else if (val === "next") {
+        if (parentName === "commoditycode-container-top") {
+          currentPage++;
+          if (currentPage < pageCount) {
+            if (
+              numberDomLists[numberDomLists.length - 2].innerText < currentPage
+            ) {
+              linkNextPage(
+                docModule.getElementsByClassName("btn-quicknext")[0],
+                numberDomLists,
+                pageCount,
+                docModule,
+                function (newPageObj) {
+                  receivePageCallBack(newPageObj, parentName);
+                }
+              );
+            }
+          }
+        } else {
+          currentPageBase++;
+          if (currentPageBase < pageCountBase) {
+            if (
+              numberDomLists[numberDomLists.length - 2].innerText <
+              currentPageBase
+            ) {
+              linkNextPage(
+                docModule.getElementsByClassName("btn-quicknext")[0],
+                numberDomLists,
+                pageCountBase,
+                docModule,
+                function (newPageObj) {
+                  receivePageCallBack(newPageObj, parentName);
+                }
+              );
+            }
+          }
+        }
+      }
+      let targetPage = getElementsByAttr(
+        parentName,
+        "number",
+        "key",
+        parentName === "commoditycode-container-top"
+          ? currentPage
+          : currentPageBase
+      );
+      targetPage[0] && targetPage[0].onclick();
+    }
+    // 页码器回调
+    function receivePageCallBack(newPageObj, parentName) {
+      parentName === "commoditycode-container-top"
+        ? (currentPage = newPageObj.newPage)
+        : (currentPageBase = newPageObj.newPage);
+      let docModule = document.getElementsByClassName(parentName)[0];
+      if (!newPageObj.flag) {
+        docModule
+          .getElementsByClassName("btn-prev")[0]
+          .removeAttribute("disabled");
+        docModule
+          .getElementsByClassName("btn-next")[0]
+          .removeAttribute("disabled");
+        if (
+          parentName === "commoditycode-container-top"
+            ? currentPage == pageCount
+            : currentPageBase == pageCountBase
+        ) {
+          selectLastPage(
+            parentName === "commoditycode-container-top"
+              ? pageCount
+              : pageCountBase,
+            parentName,
+            function (newPageObj2) {
+              receivePageCallBack(newPageObj2, parentName);
+            }
+          );
+        } else if (
+          parentName === "commoditycode-container-top" &&
+          currentPage == 1
+        ) {
+          setPage(
+            pageCount,
+            rowCount,
+            "commoditycode-container-top",
+            function (newPageObj) {
+              receivePageCallBack(newPageObj, "commoditycode-container-top");
+            }
+          );
+        } else if (
+          parentName === "commoditycode-container-footer" &&
+          currentPageBase == 1
+        ) {
+          setPage(
+            pageCountBase,
+            rowCountBase,
+            "commoditycode-container-footer",
+            function (newPageObj) {
+              receivePageCallBack(newPageObj, "commoditycode-container-footer");
+            }
+          );
+        }
+        parentName === "commoditycode-container-top" && searchTableOne();
+        parentName === "commoditycode-container-footer" && searchBase();
+        console.log("currentPage", currentPage);
+        console.log("currentPageBase", currentPageBase);
+      } else {
+        let numberDomLists = docModule.getElementsByClassName("number");
+        numberDomLists[numberDomLists.length - 2].onclick();
+      }
+    }
+    // 初始化
+    function iniEvent() {
+      searchTableOne();
+      initPage();
+      searchBase();
+    }
+    window.onload = function () {
+      iniEvent();
+      let tbody_erp = document
+        .getElementsByTagName("tbody")[0]
+        .getElementsByTagName("tr");
+      let tbody_base = document
+        .getElementsByTagName("tbody")[1]
+        .getElementsByTagName("tr");
+      for (let i = 0; i < tbody_erp.length; i++) {
+        tbody_erp[i].onclick = function () {
+          resetTableStatus(this, tbody_erp);
+        };
+      }
+      for (let i = 0; i < tbody_base.length; i++) {
+        tbody_base[i].onclick = function () {
+          resetTableStatus(this, tbody_base);
+        };
+        tbody_base[i].ondblclick = function () {};
+      }
+    };
+  </script>
+</html>

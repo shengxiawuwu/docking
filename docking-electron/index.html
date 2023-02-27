@@ -3,12 +3,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="icon" href="./favicon.ico" />
     <link rel="stylesheet" type="text/css" href="./css/elementUiIndex.css" />
     <link rel="stylesheet" type="text/css" href="./css/global.css" />
     <link rel="stylesheet" type="text/css" href="./css/elementDesign.css" />
     <link rel="stylesheet" type="text/css" href="./css/index.css" />
-    <title>视塔对接工具</title>
+    <title>Zoie</title>
     <script src="./js/message.js"></script>
     <script src="./js/modal.js"></script>
   </head>
@@ -17,34 +16,31 @@
     <div id="devtrol" class="layout">
       <div class="header">
         <div class="logo">
-          <img class="avatar" src="./images/logo.png" alt="" />
-          <span class="title">对接工具</span>
+          <span class="title">Zoie</span>
         </div>
         <div class="nav">
-          <div class="nav_drop on" onclick="changeFrame(this,'database')">
-            数据库
+          <div class="nav_drop on" onclick="changeFrame(this,'login')">
+            登录
           </div>
-          <div class="nav_drop" onclick="changeFrame(this,'sqlscript')">
-            SQL脚本
+          <div class="nav_drop" onclick="changeFrame(this,'twoTable')">
+            借阅对比
           </div>
-          <div class="nav_drop" onclick="changeFrame(this,'commoditycode')">
-            商品对码
+          <div class="nav_drop" onclick="changeFrame(this,'oneTable')">
+            借阅记录
           </div>
-          <div class="nav_drop" onclick="changeFrame(this,'operationlog')">
-            运行日志
-          </div>
+          <div class="nav_drop" onclick="changeFrame(this,'log')">借阅日志</div>
         </div>
         <div class="control">
           <div class="ico">
             <img
               src="./images/btn_nav_login.png"
               alt="icon"
-              title="点击扫码登录"
+              title="扫码登录"
               onclick="showQrCode()"
             />
             <div class="qr-code-container">
               <span class="icon"></span>
-              <p class="tips">请使用药房网商家版APP扫码登录</p>
+              <p class="tips">扫码登录</p>
               <div id="qrcode" ref="_qrcode"></div>
             </div>
           </div>
@@ -63,7 +59,7 @@
         <iframe
           id="msgFrame"
           name="msgFrame"
-          src="./htmls/database.html"
+          src="./htmls/login.html"
           frameborder="0"
           scrolling="yes"
         ></iframe>
@@ -71,15 +67,10 @@
       <div class="layout_footer">
         <div class="footer">
           <div class="left">
-            <label>企业：</label>
-            <label class="leftmr">登录人：</label>
+            <label>用户名：</label>
           </div>
           <div class="right">
-            <label class="el-checkbox">
-              <input type="checkbox" name="openAuto" value="开机启动" />
-              <span class="el-checkbox__label">开机启动</span>
-            </label>
-            <span class="leftmr pointer" data-v-fc756330=""> v4.1.2 </span>
+            <span class="leftmr pointer" data-v-fc756330=""> 版本号 </span>
           </div>
         </div>
       </div>
@@ -111,21 +102,21 @@
       window.ipcRenderer.send("window-mini");
     }
     //退出系统
-    function handleclose(){
-        window.ipcRenderer.send("window-close");
+    function handleclose() {
+      window.ipcRenderer.send("window-close");
     }
     function openModal() {
       modal = new Modal({
-        title: "请输入企业的Key-Secret",
+        title: "请输入：",
         showClose: true,
         content:
-          '<label style="display: block;padding:16px 0 8px 0;font-weight: bold;line-height:20px;">Key</label>' +
+          '<label style="display: block;padding:16px 0 8px 0;font-weight: bold;line-height:20px;">用户名</label>' +
           '<div class="el-input">' +
-          '<input class="el-input__inner" type="text" name="key" style="background:#F4F6F8;border:none;">' +
+          '<input class="el-input__inner" type="text" name="username" style="background:#F4F6F8;border:none;">' +
           "</div>" +
-          '<label style="display: block;padding:16px 0 8px 0;font-weight: bold;line-height:20px;">Secret</label>' +
+          '<label style="display: block;padding:16px 0 8px 0;font-weight: bold;line-height:20px;">密码</label>' +
           '<div class="el-input">' +
-          '<input class="el-input__inner" type="text" name="secret" style="background:#F4F6F8;border:none;">' +
+          '<input class="el-input__inner" type="text" name="pwd" style="background:#F4F6F8;border:none;">' +
           "</div>",
         showCancel: false,
         showConfirm: true,
@@ -141,7 +132,7 @@
       let key = document.getElementsByName("key")[0].value;
       let secret = document.getElementsByName("secret")[0].value;
       if (!key || !secret) {
-        messageTip("请输入Key和Secret");
+        messageTip("请输入信息");
         return;
       }
       let params = {
@@ -152,8 +143,6 @@
       modal.closeModal();
       modal = null;
     }
-    window.onload = function () {
-      //   openModal();
-    };
+    window.onload = function () {};
   </script>
 </html>

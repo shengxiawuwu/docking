@@ -1,0 +1,53 @@
+.log-container {
+    padding: 12px 16px;
+    background: #F4F6F8;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.log-container .header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px 16px 22px;
+    background-color: #fff;
+    height: 71px;
+}
+
+.log-container .header .el-button:first-of-type {
+    margin-left: 27px;
+}
+
+.log-container .header .el-button:last-of-type {
+    margin-right: 16px;
+}
+
+.log-container .log-content {
+    flex: 1;
+    position: relative;
+    background-color: #fff;
+    padding: 0 16px 16px;
+    overflow: scroll;
+}
+
+.log-container .log-content .log-list {
+    list-style: none;
+}
+
+.log-container .log-content .log-list .log-item {
+    font-size: 14px;
+    color: #142231;
+    line-height: 22px;
+    margin-bottom: 13px;
+}
+
+.log-container .el-date-editor--date input {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #cecece;
+    padding: 0 8px;
+}

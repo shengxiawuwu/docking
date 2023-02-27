@@ -1,0 +1,114 @@
+.sqlscript-container {
+    width: 100%;
+    height: 100%;
+    background-color: #F4F6F8;
+    padding: 11px 16px 17px;
+}
+
+.sqlscript-container .top-part,
+.sqlscript-container .footer-part {
+    width: 100%;
+    background-color: #fff;
+    padding: 12px 16px 16px 16px;
+    box-shadow: 0px 2px 4px 0px rgba(186, 186, 186, 0.1);
+    border-radius: 0px 0px 2px 2px;
+}
+
+.sqlscript-container .top-part {
+    margin-bottom: 12px;
+}
+.sqlscript-container .footer-part {
+    height: calc(100% - 84px);
+}
+
+.sqlscript-container .sqlscript-title {
+    position: relative;
+    font-size: 16px;
+    color: #142231;
+    font-weight: bold;
+    padding: 6px 0 6px 12px;
+    margin-bottom: 4px;
+}
+
+.sqlscript-container .sqlscript-title::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 14px;
+    background: #3279F0;
+    border-radius: 0px 2px 2px 0px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sqlscript-container .search-part {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sqlscript-container .search-part .left-part,
+.sqlscript-container .search-part .right-part {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.sqlscript-container .search-part .left-part {
+    justify-content: flex-start;
+}
+
+.sqlscript-container .search-part .left-part .el-select {
+    width: 136px !important;
+    margin-right: 24px;
+}
+
+.sqlscript-container .search-part .left-part .el-select:last-of-type {
+    width: 160px !important;
+}
+
+.sqlscript-container .search-part .left-part .el-button {
+    margin-left: 16px;
+}
+
+.sqlscript-container .search-part .left-part .el-button:last-of-type {
+    margin-right: 16px;
+}
+
+.sqlscript-container .search-part .right-part {
+    justify-content: flex-end;
+}
+
+.sqlscript-container .search-part .right-part .label {
+    color: #142231;
+    font-size: 12px;
+}
+
+.sqlscript-container .sqlscript-search-result {
+    height: calc(100% - 56px);
+}
+
+.sqlscript-container .sqlscript-search-result .el-textarea {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sqlscript-container .sqlscript-search-result .el-textarea .el-textarea__inner {
+    flex: 1;
+    height: 100%;
+}
+
+.sqlscript-container .table-content-scroll {
+    max-height: calc(100% - 80px);
+    overflow: auto;
+}
+.sqlscript-container .el-select__popper{
+    top: 68px;
+    left: 190px;
+    display: none;
+}
+.sqlscript-container .brand-popper{
+    left: 30px;
+}

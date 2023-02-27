@@ -1,0 +1,181 @@
+<html lang="">
+  <head>
+    <link rel="stylesheet" type="text/css" href="../css/elementUiIndex.css" />
+    <link rel="stylesheet" type="text/css" href="../css/global.css" />
+    <link rel="stylesheet" type="text/css" href="../css/elementDesign.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css" />
+    <script src="../js/request.js"></script>
+    <script src="../js/message.js"></script>
+    <script src="../js/modal.js"></script>
+  </head>
+
+  <body>
+    <div class="database-container">
+      <div class="form-info">
+        <div class="label">类型</div>
+        <div class="info">
+          <div class="el-select" onclick="showSelectList()">
+            <div class="select-trigger">
+              <div class="el-input el-input--suffix">
+                <input
+                  class="el-input__inner"
+                  type="text"
+                  readonly=""
+                  autocomplete="off"
+                  name="serverType"
+                  placeholder=" "
+                />
+                <span class="el-input__suffix"
+                  ><span class="el-input__suffix-inner"
+                    ><i
+                      class="el-select__caret el-input__icon el-icon-arrow-up"
+                    ></i>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="label">作者</div>
+        <div class="info">
+          <div class="el-input">
+            <input
+              class="el-input__inner"
+              type="text"
+              autocomplete="off"
+              name="author"
+            />
+          </div>
+        </div>
+        <p class="windows">
+          <label class="el-checkbox">
+            <input type="checkbox" name="autoSave" value="自动保存" />
+            <span class="el-checkbox__label"> 自动保存 </span>
+          </label>
+        </p>
+        <div class="label">书名</div>
+        <div class="info">
+          <div class="el-input">
+            <input
+              class="el-input__inner"
+              type="text"
+              autocomplete="off"
+              name="bookname"
+            />
+          </div>
+        </div>
+        <div class="label">编号</div>
+        <div class="info">
+          <div class="el-input">
+            <input
+              class="el-input__inner"
+              type="text"
+              autocomplete="off"
+              name="number"
+            />
+          </div>
+        </div>
+        <div class="btn-container">
+          <button
+            class="el-button el-button--primary el-button--mini"
+            type="button"
+            onclick="save()"
+          >
+            <span>查询</span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="el-select__popper el-popper is-light is-pure"
+        role="tooltip"
+        data-popper-placement="bottom-start"
+      >
+        <div class="el-select-dropdown" style="min-width: 650px">
+          <div class="el-scrollbar">
+            <div
+              class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"
+            >
+              <ul class="el-scrollbar__view el-select-dropdown__list">
+                <li
+                  class="el-select-dropdown__item"
+                  onclick="setServerType('类型一')"
+                >
+                  <span>类型一</span>
+                </li>
+                <li
+                  class="el-select-dropdown__item"
+                  onclick="setServerType('类型二')"
+                >
+                  <span>类型二</span>
+                </li>
+                <li
+                  class="el-select-dropdown__item"
+                  onclick="setServerType('类型三')"
+                >
+                  <span>类型三</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div
+          class="el-popper__arrow"
+          data-popper-arrow=""
+          style="position: absolute; left: 315px"
+        ></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let showSelect = false;
+    let modal = null;
+    // 下拉框显隐
+    function showSelectList() {
+      document.getElementsByClassName("el-select__popper")[0].style = showSelect
+        ? "display:none"
+        : "display:block;";
+      showSelect = !showSelect;
+    }
+    // 选中下拉框选项
+    function setServerType(serverType) {
+      document.getElementsByName("serverType")[0].value = serverType;
+      showSelectList();
+    }
+    // 查询
+    function save() {
+      let params = {
+        serverType: document.getElementsByName("serverType")[0].value,
+        author: document.getElementsByName("author")[0].value,
+        autoSave: document.getElementsByName("autoSave")[0].checked,
+        bookname: document.getElementsByName("bookname")[0].value,
+        number: document.getElementsByName("number")[0].value,
+      };
+      let url = "";
+      commonAjax("post", url, params, function (data) {
+        if (data.code != 1) {
+          messageTip(data.msg);
+          modal = new Modal({
+            title: "查询失败",
+            showClose: true,
+            content: "<p style='font-size: 14px;'>查询失败</p>",
+            showCancel: true,
+            showConfirm: true,
+            cancelText: "取消",
+            confirmText: "退出",
+            width: "480px",
+            onConfirm: () => {
+              exit();
+            },
+          });
+          modal.init();
+        } else {
+        }
+      });
+    }
+    function exit() {
+      modal.closeModal();
+      modal = null;
+    }
+    window.onload = function () {};
+  </script>
+</html>

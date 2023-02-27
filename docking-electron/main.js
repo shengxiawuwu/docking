@@ -20,7 +20,7 @@ app.on("ready", (e) => {
       preload: path.join(__dirname, './preload.js')
     },
   });
-  app.setAppUserModelId("视塔对接工具");
+  app.setAppUserModelId("zoie");
   win.loadURL(__dirname + "/index.html");
   win.show();
   win.webContents.openDevTools({ mode: "detach" });

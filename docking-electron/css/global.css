@@ -65,7 +65,7 @@ body {
 
 table {
     width: 100%;
-    border: 1px solid #F4F6F8;
+    border: 1px solid #cecece;
     border-right: none;
     border-top: none;
     font-size: 12px;
@@ -82,7 +82,7 @@ td{
 }
 td,
 th {
-    border: 1px solid #F4F6F8;
+    border: 1px solid #cecece;
     border-left: none;
     border-bottom: none;
     padding: 0 8px;
