@@ -1,71 +1,86 @@
 <html lang="">
-
-<head>
-    <link rel="stylesheet" type="text/css" href="../css/elementUiIndex.css">
-    <link rel="stylesheet" type="text/css" href="../css/global.css">
-    <link rel="stylesheet" type="text/css" href="../css/elementDesign.css">
-    <link rel="stylesheet" type="text/css" href="../css/log.css">
-    <script src="../js/request.js"></script>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../css/elementUiIndex.css" />
+    <link rel="stylesheet" type="text/css" href="../css/global.css" />
+    <link rel="stylesheet" type="text/css" href="../css/elementDesign.css" />
+    <link rel="stylesheet" type="text/css" href="../css/log.css" />
+    =
     <script src="../js/message.js"></script>
-</head>
-<body>
+    <script src="../js/axios.js"></script>
+    <script src="../js/http.js"></script>
+  </head>
+  <body>
     <div class="log-container">
-        <div class="header">
-            <div class=" el-date-editor--date" style="width: 180px;">
-                <input type="date" name="logDate" placeholder="请选择日期">
-            </div>
-            <button class="el-button el-button--primary el-button--mini is-plain" type="button" onclick="searchLog()">
-                <span>查询</span>
-            </button>
-            <button class="el-button el-button--default el-button--mini" type="button" onclick="refresh()">
-                <span>刷新</span>
-            </button>
-            <button class="el-button el-button--default el-button--mini" type="button" onclick="clearLog()">
-                <span>清空</span>
-            </button>
+      <div class="header">
+        <div class="el-date-editor--date" style="width: 180px">
+          <input type="date" name="logDate" placeholder="请选择日期" />
         </div>
-        <div class="log-content">
-            <ul class="log-list">
-            </ul>
-        </div>
+        <button
+          class="el-button el-button--primary el-button--mini is-plain"
+          type="button"
+          onclick="searchLog()"
+        >
+          <span>查询</span>
+        </button>
+        <button
+          class="el-button el-button--default el-button--mini"
+          type="button"
+          onclick="refresh()"
+        >
+          <span>刷新</span>
+        </button>
+        <button
+          class="el-button el-button--default el-button--mini"
+          type="button"
+          onclick="clearLog()"
+        >
+          <span>清空</span>
+        </button>
+      </div>
+      <div class="log-content">
+        <ul class="log-list"></ul>
+      </div>
     </div>
-</body>
-<script>
+  </body>
+  <script>
     let elem = null;
     // 查询日志结果
     function searchLog() {
-        elem.innerHTML = '';
-        for (let i = 0; i < 100; i++) {
-            let liDom = document.createElement('li');
-            liDom.className = 'log-item';
-            liDom.innerText = '22日  借阅一本';
-            elem.appendChild(liDom);
-        }
-        // let params = {
-        //     logDate: document.getElementsByName('logDate')[0].value,
-        // }
-        // let url = ''
-        // commonAjax('post', url, params, function (data) {
-        //     if (data.code != 1) {
-        //         messageTip(data.msg)
-        //     } else {
-
-        //     }
-        // });
+      elem.innerHTML = "";
+      for (let i = 0; i < 100; i++) {
+        let liDom = document.createElement("li");
+        liDom.className = "log-item";
+        liDom.innerText = "22日  借阅一本";
+        elem.appendChild(liDom);
+      }
+      //   let params = {
+      //     logDate: document.getElementsByName("logDate")[0].value,
+      //   };
+      //   let url = "";
+      //   formatHttp(axios, {
+      //     method: "post",
+      //     url: url,
+      //     data: params,
+      //   })
+      //     .then((res) => {
+      //       console.log(res);
+      //     })
+      //     .catch((e) => {
+      //       messageTip(e.msg);
+      //     });
     }
     // 清空
     function clearLog() {
-        elem.innerHTML = ''
+      elem.innerHTML = "";
     }
     // 刷新
     function refresh() {
-        searchLog()
+      searchLog();
     }
     window.onload = function () {
-        elem = document.getElementsByClassName('log-list')[0];
-        document.getElementsByName('logDate')[0].valueAsDate = new Date();
-        searchLog();
-    }
-</script>
-
+      elem = document.getElementsByClassName("log-list")[0];
+      document.getElementsByName("logDate")[0].valueAsDate = new Date();
+      searchLog();
+    };
+  </script>
 </html>

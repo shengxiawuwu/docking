@@ -1,121 +1,170 @@
 <html lang="">
-
-<head>
-    <link rel="stylesheet" type="text/css" href="../css/elementUiIndex.css">
-    <link rel="stylesheet" type="text/css" href="../css/global.css">
-    <link rel="stylesheet" type="text/css" href="../css/elementDesign.css">
-    <link rel="stylesheet" type="text/css" href="../css/oneTable.css">
-    <script src="../js/request.js"></script>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../css/elementUiIndex.css" />
+    <link rel="stylesheet" type="text/css" href="../css/global.css" />
+    <link rel="stylesheet" type="text/css" href="../css/elementDesign.css" />
+    <link rel="stylesheet" type="text/css" href="../css/oneTable.css" />
+    =
     <script src="../js/message.js"></script>
     <script src="../js/page.js"></script>
-</head>
+    <script src="../js/axios.js"></script>
+    <script src="../js/http.js"></script>
+  </head>
 
-
-<body>
+  <body>
     <div class="sqlscript-container">
-        <div class="top-part">
-            <div class="search-part">
-                <div class="left-part">
-                    <div class="el-select" onclick="showSelectBrandList()">
-                        <div class="select-trigger">
-                            <div class="el-input el-input--suffix">
-                                <input class="el-input__inner" type="text" readonly="" autocomplete="off"
-                                    placeholder="选择" name="brand">
-                                <span class="el-input__suffix">
-                                    <span class="el-input__suffix-inner">
-                                        <i class="el-select__caret el-input__icon el-icon-arrow-up"></i>
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="el-select" onclick="showSelectScriptList()">
-                        <div class="select-trigger">
-                            <div class="el-input el-input--suffix">
-                                <input class="el-input__inner" type="text" readonly="" autocomplete="off"
-                                    placeholder="选择" name="script">
-                                <span class="el-input__suffix">
-                                    <span class="el-input__suffix-inner">
-                                        <i class="el-select__caret el-input__icon el-icon-arrow-up"></i>
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="el-button el-button--primary el-button--mini is-plain" type="button" onclick="run()">
-                        <span>查询</span>
-                    </button>
+      <div class="top-part">
+        <div class="search-part">
+          <div class="left-part">
+            <div class="el-select" onclick="showSelectBrandList()">
+              <div class="select-trigger">
+                <div class="el-input el-input--suffix">
+                  <input
+                    class="el-input__inner"
+                    type="text"
+                    readonly=""
+                    autocomplete="off"
+                    placeholder="选择"
+                    name="brand"
+                  />
+                  <span class="el-input__suffix">
+                    <span class="el-input__suffix-inner">
+                      <i
+                        class="el-select__caret el-input__icon el-icon-arrow-up"
+                      ></i>
+                    </span>
+                  </span>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="footer-part">
-            <div class="sqlscript-title"> 查询结果 </div>
-            <div class="sqlscript-search-result">
-                <div class="table-content-fixed">
-                    <table cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th width="125px">姓名</th>
-                                <th width="125px">年龄</th>
-                                <th width="125px">地址</th>
-                                <th width="125px">学号</th>
-                                <th width="125px">借阅</th>
-                            </tr>
-                        </thead>
-                    </table>
+            <div class="el-select" onclick="showSelectScriptList()">
+              <div class="select-trigger">
+                <div class="el-input el-input--suffix">
+                  <input
+                    class="el-input__inner"
+                    type="text"
+                    readonly=""
+                    autocomplete="off"
+                    placeholder="选择"
+                    name="script"
+                  />
+                  <span class="el-input__suffix">
+                    <span class="el-input__suffix-inner">
+                      <i
+                        class="el-select__caret el-input__icon el-icon-arrow-up"
+                      ></i>
+                    </span>
+                  </span>
                 </div>
+              </div>
+            </div>
+            <button
+              class="el-button el-button--primary el-button--mini is-plain"
+              type="button"
+              onclick="run()"
+            >
+              <span>查询</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-part">
+        <div class="sqlscript-title">查询结果</div>
+        <div class="sqlscript-search-result">
+          <div class="table-content-fixed">
+            <table cellspacing="0">
+              <thead>
+                <tr>
+                  <th width="125px">姓名</th>
+                  <th width="125px">年龄</th>
+                  <th width="125px">地址</th>
+                  <th width="125px">学号</th>
+                  <th width="125px">借阅</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
 
-                <div class="table-content-scroll">
-                    <table cellspacing="0">
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-            <div role="pagination" aria-label="pagination" class="el-pagination pagination hort-box" data-v-b770da44="">
-                <span class="el-pagination__total"></span>
-                <button type="button" class="btn-prev" onclick="handlePageChange('prev')">
-                    <i class="el-icon el-icon-arrow-left"></i>
-                </button>
-                <ul class="el-pager"></ul>
-                <button type="button" class="btn-next" onclick="handlePageChange('next')">
-                    <i class="el-icon el-icon-arrow-right"></i>
-                </button>
-            </div>
+          <div class="table-content-scroll">
+            <table cellspacing="0">
+              <tbody></tbody>
+            </table>
+          </div>
         </div>
-        <div class="el-select__popper el-popper is-light is-pure brand-popper" role="tooltip"
-            data-popper-placement="bottom-start">
-            <div class="el-select-dropdown" style="min-width: 140px;">
-                <div class="el-scrollbar">
-                    <div class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default">
-                        <ul class="el-scrollbar__view el-select-dropdown__list">
-                            <li class="el-select-dropdown__item"><span>一年级</span></li>
-                            <li class="el-select-dropdown__item"><span>二年级</span></li>
-                            <li class="el-select-dropdown__item"><span>三年级</span></li>
-                            <li class="el-select-dropdown__item"><span>四年级</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="el-popper__arrow" style="position: absolute; left: 64px;top:-5px;"></div>
+        <div
+          role="pagination"
+          aria-label="pagination"
+          class="el-pagination pagination hort-box"
+          data-v-b770da44=""
+        >
+          <span class="el-pagination__total"></span>
+          <button
+            type="button"
+            class="btn-prev"
+            onclick="handlePageChange('prev')"
+          >
+            <i class="el-icon el-icon-arrow-left"></i>
+          </button>
+          <ul class="el-pager"></ul>
+          <button
+            type="button"
+            class="btn-next"
+            onclick="handlePageChange('next')"
+          >
+            <i class="el-icon el-icon-arrow-right"></i>
+          </button>
         </div>
-        <div class="el-select__popper el-popper is-light is-pure script-popper" role="tooltip"
-            data-popper-placement="bottom-start">
-            <div class="el-select-dropdown" style="min-width: 162px;">
-                <div class="el-scrollbar">
-                    <div class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default">
-                        <ul class="el-scrollbar__view el-select-dropdown__list">
-                            <li class="el-select-dropdown__item"><span>学生</span></li>
-                            <li class="el-select-dropdown__item"><span>教师</span></li>
-                            <li class="el-select-dropdown__item"><span>其他</span></li>
-                        </ul>
-                    </div>
-                </div>
+      </div>
+      <div
+        class="el-select__popper el-popper is-light is-pure brand-popper"
+        role="tooltip"
+        data-popper-placement="bottom-start"
+      >
+        <div class="el-select-dropdown" style="min-width: 140px">
+          <div class="el-scrollbar">
+            <div
+              class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"
+            >
+              <ul class="el-scrollbar__view el-select-dropdown__list">
+                <li class="el-select-dropdown__item"><span>一年级</span></li>
+                <li class="el-select-dropdown__item"><span>二年级</span></li>
+                <li class="el-select-dropdown__item"><span>三年级</span></li>
+                <li class="el-select-dropdown__item"><span>四年级</span></li>
+              </ul>
             </div>
-            <div class="el-popper__arrow" style="position: absolute; left: 78px;top:-5px;"></div>
+          </div>
         </div>
+        <div
+          class="el-popper__arrow"
+          style="position: absolute; left: 64px; top: -5px"
+        ></div>
+      </div>
+      <div
+        class="el-select__popper el-popper is-light is-pure script-popper"
+        role="tooltip"
+        data-popper-placement="bottom-start"
+      >
+        <div class="el-select-dropdown" style="min-width: 162px">
+          <div class="el-scrollbar">
+            <div
+              class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"
+            >
+              <ul class="el-scrollbar__view el-select-dropdown__list">
+                <li class="el-select-dropdown__item"><span>学生</span></li>
+                <li class="el-select-dropdown__item"><span>教师</span></li>
+                <li class="el-select-dropdown__item"><span>其他</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div
+          class="el-popper__arrow"
+          style="position: absolute; left: 78px; top: -5px"
+        ></div>
+      </div>
     </div>
-</body>
-<script>
+  </body>
+  <script>
     let showBranchSelect = false;
     let showScriptSelect = false;
     let currentPage = 1;
@@ -123,278 +172,310 @@
     let rowCount = 78;
     // 获取运行数据
     function getRunData() {
-        // 处理滚动条引起的宽度 默认无滚动条
-        document.getElementsByClassName('table-content-fixed')[0].style = '';
-        // 获取数据
-        let runDataList = [
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-            {
-                name: "张三",
-                age: "18",
-                address: "江苏南京",
-                no: "1",
-                borrowing: "python",
-            },
-        ];
-        // 处理滚动条引起的宽度 长度大于9出现滚动条
-        if (runDataList.length > 16) {
-            document.getElementsByClassName('table-content-fixed')[0].style = "width:calc(100% - 8px)";
+      // 处理滚动条引起的宽度 默认无滚动条
+      document.getElementsByClassName("table-content-fixed")[0].style = "";
+      // 获取数据
+      let runDataList = [
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+        {
+          name: "张三",
+          age: "18",
+          address: "江苏南京",
+          no: "1",
+          borrowing: "python",
+        },
+      ];
+      // 处理滚动条引起的宽度 长度大于9出现滚动条
+      if (runDataList.length > 16) {
+        document.getElementsByClassName("table-content-fixed")[0].style =
+          "width:calc(100% - 8px)";
+      }
+      // 清空执行结果
+      let tbody = document.getElementsByTagName("tbody")[0];
+      tbody.innerHTML = "";
+      // 挂载执行结果
+      runDataList.forEach((item, index) => {
+        let tr = document.createElement("tr");
+        for (let key in item) {
+          let td = document.createElement("td");
+          td.width = "125px";
+          td.innerHTML = item[key];
+          tr.appendChild(td);
         }
-        // 清空执行结果
-        let tbody = document.getElementsByTagName('tbody')[0];
-        tbody.innerHTML = '';
-        // 挂载执行结果
-        runDataList.forEach((item, index) => {
-            let tr = document.createElement('tr');
-            for (let key in item) {
-                let td = document.createElement('td');
-                td.width = '125px';
-                td.innerHTML = item[key];
-                tr.appendChild(td);
-            }
-            tbody.append(tr)
-        })
-        // // 获取查询参数
-        // let params = {
-        //     brand: document.getElementsByName('brand')[0].value,
-        //     script: document.getElementsByName('script')[0].value,
-        //     show: document.getElementsByName('orderShow')[0].checked,
-        //     text: document.getElementsByName('text')[0].value,
-        //     currentPage:currentPage,
-        //     pageCount: 10
-        // }
-        // let url = ''
-        // commonAjax('post', url, params, function (data) {
-        //     if (data.code != 1) {
-        //         messageTip(data.msg)
-        //     } else {
-
-        //     }
-        // });
+        tbody.append(tr);
+      });
+      // // 获取查询参数
+      // let params = {
+      //     brand: document.getElementsByName('brand')[0].value,
+      //     script: document.getElementsByName('script')[0].value,
+      //     show: document.getElementsByName('orderShow')[0].checked,
+      //     text: document.getElementsByName('text')[0].value,
+      //     currentPage:currentPage,
+      //     pageCount: 10
+      // }
+      // let url = ''
+      //   formatHttp(axios, {
+      //     method: "post",
+      //     url: url,
+      //     data: params,
+      //   })
+      //     .then((res) => {
+      //       console.log(res);
+      //     })
+      //     .catch((e) => {
+      //       messageTip(e.msg);
+      //     });
     }
 
     function initialize() {
-        console.log('格式化')
+      console.log("格式化");
     }
     function upload() {
-        console.log('上报')
+      console.log("上报");
     }
     // 品牌下拉框显隐
     function showSelectBrandList() {
-        document.getElementsByClassName('el-select__popper')[0].style = showBranchSelect ? "display:none" : "display:block;"
-        showBranchSelect = !showBranchSelect;
+      document.getElementsByClassName("el-select__popper")[0].style =
+        showBranchSelect ? "display:none" : "display:block;";
+      showBranchSelect = !showBranchSelect;
     }
     // 脚本下拉框显隐
     function showSelectScriptList() {
-        document.getElementsByClassName('el-select__popper')[1].style = showScriptSelect ? "display:none" : "display:block;"
-        showScriptSelect = !showScriptSelect;
+      document.getElementsByClassName("el-select__popper")[1].style =
+        showScriptSelect ? "display:none" : "display:block;";
+      showScriptSelect = !showScriptSelect;
     }
     // 选中下拉框选项
     function setSelectStatus(obj, items, name) {
-        for (let i = 0; i < items.length; i++) {
-            items[i].className = 'el-select-dropdown__item';
-        }
-        obj.className = 'el-select-dropdown__item selected hover';
-        document.getElementsByName(name)[0].value = obj.innerText;
-        name === 'brand' ? showSelectBrandList() : showSelectScriptList();
+      for (let i = 0; i < items.length; i++) {
+        items[i].className = "el-select-dropdown__item";
+      }
+      obj.className = "el-select-dropdown__item selected hover";
+      document.getElementsByName(name)[0].value = obj.innerText;
+      name === "brand" ? showSelectBrandList() : showSelectScriptList();
     }
 
     // 初始化页码
     function initPage() {
-        setPage(pageCount, rowCount, 'sqlscript-container', function (newPageObj) {
-            receivePageCallBack(newPageObj);
-        })
+      setPage(
+        pageCount,
+        rowCount,
+        "sqlscript-container",
+        function (newPageObj) {
+          receivePageCallBack(newPageObj);
+        }
+      );
     }
     // 页码器跳转
     function handlePageChange(val) {
-        let numberDomLists = document.getElementsByClassName('number');
-        if (val === 'prev') {
-            currentPage--;
-            if (currentPage > 1) {
-                if (numberDomLists[1].innerText > currentPage) {
-                    linkPrevPage(
-                        document.getElementsByClassName('btn-quickprev')[0],
-                        numberDomLists,
-                        pageCount,
-                        document.getElementsByClassName('sqlscript-container')[0],
-                        function (newPageObj) {
-                            receivePageCallBack(newPageObj);
-                        })
-                }
-            }
-        } else if (val === 'next') {
-            currentPage++;
-            if (currentPage < pageCount) {
-                if (numberDomLists[numberDomLists.length - 2].innerText < currentPage) {
-                    linkNextPage(
-                        document.getElementsByClassName('btn-quicknext')[0],
-                        numberDomLists,
-                        pageCount,
-                        document.getElementsByClassName('sqlscript-container')[0],
-                        function (newPageObj) {
-                            receivePageCallBack(newPageObj);
-                        })
-                }
-            }
+      let numberDomLists = document.getElementsByClassName("number");
+      if (val === "prev") {
+        currentPage--;
+        if (currentPage > 1) {
+          if (numberDomLists[1].innerText > currentPage) {
+            linkPrevPage(
+              document.getElementsByClassName("btn-quickprev")[0],
+              numberDomLists,
+              pageCount,
+              document.getElementsByClassName("sqlscript-container")[0],
+              function (newPageObj) {
+                receivePageCallBack(newPageObj);
+              }
+            );
+          }
         }
-        let targetPage = getElementsByAttr('sqlscript-container', 'number', 'key', currentPage);
-        targetPage[0] && targetPage[0].onclick()
+      } else if (val === "next") {
+        currentPage++;
+        if (currentPage < pageCount) {
+          if (
+            numberDomLists[numberDomLists.length - 2].innerText < currentPage
+          ) {
+            linkNextPage(
+              document.getElementsByClassName("btn-quicknext")[0],
+              numberDomLists,
+              pageCount,
+              document.getElementsByClassName("sqlscript-container")[0],
+              function (newPageObj) {
+                receivePageCallBack(newPageObj);
+              }
+            );
+          }
+        }
+      }
+      let targetPage = getElementsByAttr(
+        "sqlscript-container",
+        "number",
+        "key",
+        currentPage
+      );
+      targetPage[0] && targetPage[0].onclick();
     }
     // 页码器回调
     function receivePageCallBack(newPageObj) {
-        currentPage = newPageObj.newPage;
-        if (!newPageObj.flag) {
-            document.getElementsByClassName('btn-prev')[0].removeAttribute('disabled');
-            document.getElementsByClassName('btn-next')[0].removeAttribute('disabled');
-            if (currentPage == pageCount) {
-                selectLastPage(pageCount, 'sqlscript-container', function (newPageObj2) {
-                    receivePageCallBack(newPageObj2);
-                })
-            } else if (currentPage == 1) {
-                initPage();
+      currentPage = newPageObj.newPage;
+      if (!newPageObj.flag) {
+        document
+          .getElementsByClassName("btn-prev")[0]
+          .removeAttribute("disabled");
+        document
+          .getElementsByClassName("btn-next")[0]
+          .removeAttribute("disabled");
+        if (currentPage == pageCount) {
+          selectLastPage(
+            pageCount,
+            "sqlscript-container",
+            function (newPageObj2) {
+              receivePageCallBack(newPageObj2);
             }
-            getRunData()
-            console.log(currentPage)
-        } else {
-            let numberDomLists = document.getElementsByClassName('number');
-            numberDomLists[numberDomLists.length - 2].onclick()
+          );
+        } else if (currentPage == 1) {
+          initPage();
         }
-    }
-    
-    function run() {
         getRunData();
-        initPage();
+        console.log(currentPage);
+      } else {
+        let numberDomLists = document.getElementsByClassName("number");
+        numberDomLists[numberDomLists.length - 2].onclick();
+      }
+    }
+
+    function run() {
+      getRunData();
+      initPage();
     }
     // 初始化
     function iniEvent() {
-        run();
-        let brandItems = document.getElementsByClassName("el-select__popper")[0].getElementsByClassName("el-select-dropdown__item");
-        let scriptItems = document.getElementsByClassName("el-select__popper")[1].getElementsByClassName("el-select-dropdown__item");
-        for (let i = 0; i < brandItems.length; i++) {
-            brandItems[i].onclick = function () {
-                setSelectStatus(this, brandItems, 'brand');
-            }
-        }
-        for (let i = 0; i < scriptItems.length; i++) {
-            scriptItems[i].onclick = function () {
-                setSelectStatus(this, scriptItems, 'script');
-            }
-        }
+      run();
+      let brandItems = document
+        .getElementsByClassName("el-select__popper")[0]
+        .getElementsByClassName("el-select-dropdown__item");
+      let scriptItems = document
+        .getElementsByClassName("el-select__popper")[1]
+        .getElementsByClassName("el-select-dropdown__item");
+      for (let i = 0; i < brandItems.length; i++) {
+        brandItems[i].onclick = function () {
+          setSelectStatus(this, brandItems, "brand");
+        };
+      }
+      for (let i = 0; i < scriptItems.length; i++) {
+        scriptItems[i].onclick = function () {
+          setSelectStatus(this, scriptItems, "script");
+        };
+      }
     }
     window.onload = function () {
-        iniEvent();
-    }
-</script>
-
+      iniEvent();
+    };
+  </script>
 </html>
